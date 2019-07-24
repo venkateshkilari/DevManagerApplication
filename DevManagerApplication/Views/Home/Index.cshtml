@@ -1,0 +1,49 @@
+﻿@model  DTO.Implementation.Devops.DevopsDTO
+@{ 
+    bool isServerBlocked = false;
+    string attrForInput = string.Empty;
+    string blockServerAttr = string.Empty;
+    string releaseServerAttr = string.Empty;
+}
+<div class="font-semibold font-title">
+   Servers
+</div>
+<div class="panel">
+    <div class="panel-body">
+        <input type="hidden" id="UserId" value="@ViewBag.UserId" />
+        @foreach (var server in Model.Servers)
+        {
+            {
+                isServerBlocked = server.User != null && server.Status == Utility.Constants.EnumConstants.ServerStatus.Blocked;
+                attrForInput = isServerBlocked ? "hidden" : "";
+                blockServerAttr = isServerBlocked ? "disabled" : "";
+                releaseServerAttr = isServerBlocked ? "" : "disabled";
+            }
+            <div class="row" id="@server.Id" style="margin-bottom:10px;">
+                <div class="col-lg-4">
+                    <span class="ServerName">
+                        @server.Name
+                    </span>
+                </div>
+                <div class="col-lg-4">
+                   
+                    <span class="UserName">
+                        @if(isServerBlocked){
+
+                        @server.User.Name
+                        }
+                    </span>
+                   
+                        <input type="text" value="@ViewBag.UserId" class="input-field UserInput" @attrForInput />
+                   
+                </div>
+                <div class="col-lg-4">
+                    <button type="button" class="button-primary BlockServer" @blockServerAttr style="margin-top:10px;">Block Server</button>
+                    <button type="button" class="button-secondary ReleaseServer" @releaseServerAttr style="margin-top:10px;">Release Server</button>
+                </div>
+            </div>
+
+        }
+    </div>
+</div>
+<script type="text/javascript"src="~/Scripts/DevManagerApp.js"> </script>
