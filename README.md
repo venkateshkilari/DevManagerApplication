@@ -12,3 +12,7 @@ Install above application as a MS team’s app, it auto populates user email int
 
 As a Web Application:
 Works same way as a MS Teams app except populating Name field automatically.
+
+For installing application in teams follow the instructions.
+https://docs.microsoft.com/en-us/microsoftteams/platform/get-started/get-started-dotnet-app-studio
+For running as a web application , download and code and run in visual studio
